@@ -8,3 +8,11 @@ test('normalizeURL strip protocol', () => {
     expect(actual).toEqual(expected)
 })
 
+test('normalizeURL strip trailing slash', () => {
+    const input = 'https://bbc.com/path/'
+    const actual = normalizeURL(input)
+    const expected = 'bbc.com/path'
+    expect(actual).toEqual(expected)
+})
+
+
