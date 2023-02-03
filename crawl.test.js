@@ -83,3 +83,22 @@ test('getURLsFromHTML both', () => {
     const expected = ['https://www.bbc.com/path1/', 'https://www.bbc.com/path2/']
     expect(actual).toEqual(expected)
 })
+
+
+
+
+test('getURLsFromHTML invalid url', () => {
+    const innerHTMLBody = `
+      <html>
+        <body>
+          <a href="invalid">
+            BBC Website
+          </a>
+        </body>
+      </html>
+    `
+    const inputBaseURL = 'https://www.bbc.com'
+    const actual = getURLsFromHTML(innerHTMLBody, inputBaseURL)
+    const expected = []
+    expect(actual).toEqual(expected)
+})

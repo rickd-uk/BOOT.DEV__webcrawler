@@ -8,10 +8,21 @@ function getURLsFromHTML(htmlBody, baseURL) {
     for (const element of linkElements) {
         if (element.href.slice(0, 1) === '/') {
             // Relative Url
-            urls.push(`${baseURL}${element.href}`)
+            try {
+                const urlObj = new URL(`${baseURL}${element.href}`)
+                urls.push(urlObj.href)
+            } catch (err) {
+                console.log(`Error with relative url: ${err.message}`)
+            }
+
         } else {
             // Absolute Url
-            urls.push(element.href)
+            try {
+                const urlObj = new URL(element.href)
+                urls.push(urlObj.href)
+            } catch (err) {
+                console.log(`Error with absolute url: ${err.message}`)
+            }
         }
 
     }
