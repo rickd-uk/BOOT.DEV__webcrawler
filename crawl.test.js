@@ -22,4 +22,10 @@ test('normalizeURL capitals', () => {
     expect(actual).toEqual(expected)
 })
 
+test('normalizeURL strip http', () => {
+    const input = 'http://bbc.com/path'
+    const actual = normalizeURL(input)
+    const expected = 'bbc.com/path'
+    expect(actual).toEqual(expected)
+})
 
