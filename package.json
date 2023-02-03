@@ -20,5 +20,8 @@
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
+  },
+  "dependencies": {
+    "jsdom": "^21.1.0"
   }
 }

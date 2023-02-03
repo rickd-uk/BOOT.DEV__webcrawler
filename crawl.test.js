@@ -1,4 +1,4 @@
-import { normalizeURL } from './crawl.js';
+import { getURLsFromHTML, normalizeURL } from './crawl.js';
 import { test, expect } from '@jest/globals'
 
 test('normalizeURL strip protocol', () => {
@@ -29,3 +29,19 @@ test('normalizeURL strip http', () => {
     expect(actual).toEqual(expected)
 })
 
+
+test('getURLsFromHTML absolute', () => {
+    const innerHTMLBody = `
+      <html>
+        <body>
+          <a href="https://www.bbc.com">
+            BBC Website
+          </a>
+        </body>
+      </html>
+    `
+    const inputBaseURL = 'https://www.bbc.com'
+    const actual = getURLsFromHTML(innerHTMLBody, inputBaseURL)
+    const expected = ['https://www.bbc.com/']
+    expect(actual).toEqual(expected)
+})
