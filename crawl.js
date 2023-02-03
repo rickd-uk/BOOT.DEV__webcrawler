@@ -6,7 +6,14 @@ function getURLsFromHTML(htmlBody, baseURL) {
     const dom = new JSDOM(htmlBody)
     const linkElements = dom.window.document.querySelectorAll('a')
     for (const element of linkElements) {
-        urls.push(element.href)
+        if (element.href.slice(0, 1) === '/') {
+            // Relative Url
+            urls.push(`${baseURL}${element.href}`)
+        } else {
+            // Absolute Url
+            urls.push(element.href)
+        }
+
     }
     return urls
 }
