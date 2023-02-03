@@ -15,4 +15,11 @@ test('normalizeURL strip trailing slash', () => {
     expect(actual).toEqual(expected)
 })
 
+test('normalizeURL capitals', () => {
+    const input = 'https://BBC.com/path'
+    const actual = normalizeURL(input)
+    const expected = 'bbc.com/path'
+    expect(actual).toEqual(expected)
+})
+
 
