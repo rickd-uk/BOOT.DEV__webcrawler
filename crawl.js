@@ -11,6 +11,13 @@ async function crawlPage(currentURL) {
             return
         }
 
+        const contentType = res.headers.get("content-type")
+
+        if (!contentType.includes('text/html')) {
+            console.log(`not a html response ${contentType} on page ${currentURL}`)
+            return
+        }
+
 
         console.log(await res.text())
     } catch (err) {
