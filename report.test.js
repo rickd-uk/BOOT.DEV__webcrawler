@@ -1,4 +1,4 @@
-import { sortPages } from './report.js';
+import { printReport, sortPages } from './report.js';
 import { test, expect } from '@jest/globals'
 
 test('sortPages - 2 pages', () => {
