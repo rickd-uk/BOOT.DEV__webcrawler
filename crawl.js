@@ -1,5 +1,22 @@
 import { JSDOM } from 'jsdom'
 
+async function crawlPage(currentURL) {
+    console.log(`Actively crawling: ${currentURL}`)
+
+    try {
+        const res = await fetch(currentURL)
+
+        if (res.status > 399) {
+            console.log(`error in fetch with status code ${res.status} on page ${currentURL}`)
+            return
+        }
+
+
+        console.log(await res.text())
+    } catch (err) {
+        console.log(`error fetching webpage: ${err.message} on ${currentURL}`)
+    }
+}
 
 function getURLsFromHTML(htmlBody, baseURL) {
     const urls = []
@@ -38,4 +55,4 @@ function normalizeURL(urlString) {
     return hostPath
 }
 
-export { getURLsFromHTML, normalizeURL }
+export { crawlPage, getURLsFromHTML, normalizeURL }
